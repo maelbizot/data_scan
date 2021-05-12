@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/mael', 'App\Http\Controllers\pageController@liste');
 
-Route::get('/les_villes/{nom_departement}', 'App\Http\Controllers\pageController@les_villes')->name('les_villes');
+Route::get('/les_villes/{CODDEP}', 'App\Http\Controllers\pageController@les_villes')->name('les_villes');
 
 Route::get('/rues/{ville}', 'App\Http\Controllers\pageController@la_rue')->name('rues');
 

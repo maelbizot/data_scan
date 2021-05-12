@@ -25,9 +25,9 @@
   <tbody>
     @foreach($tout as $infos)
     <tr>
-      <td><a href="/ ">{{ $infos->REG }}</a></td>
+      <td>{{ $infos->REG }}</td>
       <td>{{ $infos->CODDEP }}</td>
-      <td><a href="{{route ('les_villes', $infos->DEP) }}">{{ $infos->DEP }}</a></td>
+      <td><a href="{{route ('les_villes', $infos->CODDEP) }}">{{ $infos->DEP }}</a></td>
     </tr>
 
     @endforeach

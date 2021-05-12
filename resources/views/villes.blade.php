@@ -11,14 +11,13 @@
     </head>
     <body>
     <div>
-    <h1>liste des villes</h1>
     
-
-
+    <h1>liste des villes en {{$nom_du_departement->DEP}}</h1>
+    <h2>il y a {{$data_ville}} habitans en {{$nom_du_departement->DEP}} ({{$le_departement}})</h2>
        <ul class="row">
        @foreach($la_ville as $ville)
           <li class="col-sm-2">
-            <a href="{{route ('rues', $ville->nom_commune) }}">{{ $ville->nom_commune }}</a>
+            <a href="{{route ('rues', $ville->COM) }}">{{ $ville->COM }}</a>
           </li>
         @endforeach
         </ul>
