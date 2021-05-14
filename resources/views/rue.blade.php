@@ -11,9 +11,8 @@
     </head>
     <body>
     <div>
-    <button id="togg2">masquer les rues qui ne possèdent pas de DVF</button>
     <h1>liste des rues à {{$ville}}</h1>
-    <h2>il y a {{$population}} habitans dans cette ville</h2>
+    <h2>il y a {{$population[0]->PMUN}} habitans dans cette ville</h2>
        <ul class="row">
        @foreach($les_dvf as $rue)
           <li class="col-sm-2">
@@ -21,12 +20,15 @@
             <a href="{{route ('dvf', [$rue->adresse_nom_voie, $ville]) }}">afficher les DVF de cette rue</a>
           </li>
         @endforeach
-        @foreach($unique_rue as $le_reste)
-          <li class="col-sm-2 mael">
+      </ul>
+      <button id="togg2">masquer les rues qui ne possèdent pas de DVF</button>
+      <ul id="mael">
+        @foreach($adresse as $le_reste)
+          <li >
           {{$le_reste->nom_voie}}
-          </li>
+          </li>          
         @endforeach
-        </ul>
+      </ul>
 
 </div>
     </body>
@@ -37,14 +39,19 @@
 li{
   margin : 10px;
 }
+.mael{
+  display : none;
+}
 </style>
 
 <script>
-togg1.addEventListener("click", () => {
-  if(getElementByClassName('col-sm-2 mael').display != "none"){
-    d1.style.display = "none";
+togg2.addEventListener("click", () => {
+  console.log('clicked')
+  var mael= document.getElementById('mael');
+  if(mael.style.display != "none"){
+    mael.style.display = 'none'
   } else {
-    d1.style.display = "block";
+    mael.style.display = "block";
   }
 })
 </script>

@@ -39,9 +39,9 @@ class pageController extends Controller
         //$la_rue = DB::table('adresse-france')->select('nom_voie')->where('nom_commune', $ville)->distinct()->get();
         //->with('la_rue', $la_rue)
         $les_dfv = DB::table('59')->select('adresse_nom_voie')->where('nom_commune', $ville)->distinct()->get();
-        $la_rue = $les_dfv + DB::table('adresse-france')->select('nom_voie')->where('nom_commune', $ville)->distinct()->get();
-        $unique_rue = array_unique($la_rue);
-        return view('rue')->with('ville', $ville)->with('population', $population)->with('les_dvf', $les_dfv)->with('unique_rue', $unique_rue);
+        $adresse = DB::table('adresse_france')->select('nom_voie')->where('nom_commune', $ville)->distinct()->get();
+        //$unique_rue = array_unique($la_rue);   ->with('unique_rue', $unique_rue);
+        return view('rue')->with('ville', $ville)->with('population', $population)->with('les_dvf', $les_dfv)->with('adresse', $adresse);
     }
 
     public function dvf($rue, $ville)
