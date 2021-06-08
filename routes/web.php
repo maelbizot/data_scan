@@ -18,13 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mael', 'App\Http\Controllers\pageController@liste');
+Route::get('/datascan', 'App\Http\Controllers\pageController@liste');
 
-Route::get('/les_villes/{CODDEP}', 'App\Http\Controllers\pageController@les_villes')->name('les_villes');
+Route::get('/datascan/{CODDEP}', 'App\Http\Controllers\pageController@les_villes')->name('les_villes');
 
-Route::get('/rues/{ville}', 'App\Http\Controllers\pageController@la_rue')->name('rues');
+Route::get('/datascan/{CODDEP}/{ville}', 'App\Http\Controllers\pageController@la_rue')->name('rues');
 
-Route::get('/DVF/{ville}/{rue}', 'App\Http\Controllers\pageController@dvf')->name('dvf');
+Route::get('/datascan/{CODDEP}/{ville}/{rue}', 'App\Http\Controllers\pageController@dvf')->name('dvf');
 
 route::get('/departements/{nom_departement}', 'App\Http\Controllers\pageController@afficher')->name('nom_departement');
 

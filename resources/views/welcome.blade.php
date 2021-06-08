@@ -28,7 +28,7 @@
             <h1 class="cover-heading">L'expert de l'immobilier et de la rénnovation en France</h1>
             <p class="lead">Ce site vous permets de découvrir le prix de l'immobilier, les commercants aux alentours, les ecoles, les loisirs pour une adresse donnée en France</p>
             <p class="lead">
-            <a href="/mael" class="btn btn-lg btn-secondary">liste des départements</a>
+            <a href="/datascan" class="btn btn-lg btn-secondary">liste des départements</a>
             </p>
         </main>
 

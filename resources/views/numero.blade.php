@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>liste des rues </title>
+        <title>Prix de l'immorbilier à {{$rue}} </title>
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- Styles -->
@@ -27,7 +27,17 @@
           @endforeach
           </ul>
       </div>
-
+      <div class="container">
+        <h2>Prix moyen du m² {{$rue}}</h2>
+        <script>
+          
+        </script>
+      </div>
+      
+      <div class="container">
+        <h2>Liste des rues à proximité de {{$rue}}</h2>
+      </div>
+      
       <form action="index.php" method="GET">
         <label for="cars">trier par ordre : </label>
         <select id="cars" name="carlist" form="carform">
