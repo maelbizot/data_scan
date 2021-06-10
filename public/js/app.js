@@ -1869,8 +1869,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['homeRoute'],
   data: function data() {
     return {
       posts: [],
@@ -1882,9 +1886,10 @@ __webpack_require__.r(__webpack_exports__);
     fetchPosts: function fetchPosts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('http://127.0.0.1:8000/api/posts/marquette-lez-lille').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://127.0.0.1:8000/api/posts/" + this.homeRoute.split('/')[5]).then(function (response) {
         _this.posts = response.data;
         console.log(_this.posts[0].adresse_nom_voie);
+        console.log(_this.homeRoute.split('/')[5]);
         _this.loading = false;
       })["catch"](function (error) {
         console.log(error);
@@ -1895,8 +1900,8 @@ __webpack_require__.r(__webpack_exports__);
     getFilteredPosts: function getFilteredPosts() {
       var _this2 = this;
 
-      return this.posts.adresse_nom_voie.filter(function (post) {
-        return post.toLowerCase().includes(_this2.q.toLowerCase());
+      return this.posts.filter(function (post) {
+        return post.adresse_nom_voie.toLowerCase().includes(_this2.q.toLowerCase());
       });
     }
   },
@@ -37578,61 +37583,67 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._v("\n    " + _vm._s(this.ville) + "\n    "),
-      _c("input", {
-        directives: [
-          { name: "model", rawName: "v-model", value: _vm.q, expression: "q" }
-        ],
-        staticClass: "form-control mb-3",
-        attrs: { type: "text", placeholder: "Rechercher..." },
-        domProps: { value: _vm.q },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.q = $event.target.value
+  return _c("div", [
+    _c("input", {
+      directives: [
+        { name: "model", rawName: "v-model", value: _vm.q, expression: "q" }
+      ],
+      staticClass: "form-control mb-3",
+      attrs: { type: "text", placeholder: "Rechercher..." },
+      domProps: { value: _vm.q },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
           }
+          _vm.q = $event.target.value
         }
-      }),
-      _vm._v(" "),
-      this.q && _vm.getFilteredPosts.length >= 1
-        ? _c("div", { staticClass: "alert alert-secondary" }, [
-            _vm._v(
-              "\n        " +
-                _vm._s(_vm.getFilteredPosts.length) +
-                " articles trouvés\n    "
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      this.q && _vm.getFilteredPosts.length === 0
-        ? _c("div", { staticClass: "alert alert-secondary" }, [
-            _vm._v("\n        Aucun article trouvé\n    ")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      this.loading ? _c("div", { staticClass: "loader" }) : _vm._e(),
-      _vm._v(" "),
-      _vm._l(this.posts, function(adress) {
-        return _c("div", { key: adress.data }, [
-          _c("div", { staticClass: "card mb-3" }, [
+      }
+    }),
+    _vm._v(" "),
+    this.q && _vm.getFilteredPosts.length >= 1
+      ? _c("div", { staticClass: "alert alert-secondary" }, [
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.getFilteredPosts.length) +
+              " articles trouvés\n    "
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    this.q && _vm.getFilteredPosts.length === 0
+      ? _c("div", { staticClass: "alert alert-secondary" }, [
+          _vm._v("\n        Aucun article trouvé\n    ")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    this.loading ? _c("div", { staticClass: "loader" }) : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      _vm._l(_vm.getFilteredPosts, function(adress) {
+        return _c("div", { key: adress.data, staticClass: "col-sm-3" }, [
+          _c("div", { staticClass: "card w-100" }, [
             _c("div", { staticClass: "card-body" }, [
               _c("h5", { staticClass: "card-title" }, [
                 _vm._v(_vm._s(adress.adresse_nom_voie))
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [_vm._v("SALUT")])
+              _c(
+                "a",
+                {
+                  attrs: { href: _vm.homeRoute + "/" + adress.adresse_nom_voie }
+                },
+                [_vm._v("afficher les DVF de cette rue")]
+              )
             ])
           ])
         ])
-      })
-    ],
-    2
-  )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

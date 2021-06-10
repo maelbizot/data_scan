@@ -1,7 +1,6 @@
 <template>
     <div>
-        {{this.ville}}
-        <input type="text" v-model="q" class="form-control mb-3" placeholder="Rechercher...">
+         <input type="text" v-model="q" class="form-control mb-3" placeholder="Rechercher...">
         <div class="alert alert-secondary" v-if="this.q && getFilteredPosts.length >= 1">
             {{ getFilteredPosts.length }} articles trouvés
         </div>
@@ -9,11 +8,15 @@
             Aucun article trouvé
         </div>
         <div class="loader" v-if="this.loading"></div>
-        <div v-for="adress in this.posts" v-bind:key="adress.data">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ adress.adresse_nom_voie }}</h5>
-                    <p class="card-text">SALUT</p>
+        
+        <div class="row">
+            <div v-for="adress in getFilteredPosts" v-bind:key="adress.data" class="col-sm-3">
+            <!-- <div v-for="adress in this.posts" v-bind:key="adress.data"> -->
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ adress.adresse_nom_voie }}</h5>
+                        <a v-bind:href="homeRoute+'/'+adress.adresse_nom_voie">afficher les DVF de cette rue</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,6 +26,9 @@
 <script>
 import axios from "axios";
     export default {
+        props: ['homeRoute'],
+
+
         data() {
             return {
                 posts: [],
@@ -32,10 +38,11 @@ import axios from "axios";
         },
         methods: {
             fetchPosts() {
-                axios.get('http://127.0.0.1:8000/api/posts/marquette-lez-lille')
+                axios.get("http://127.0.0.1:8000/api/posts/"+this.homeRoute.split('/')[5])
                 .then((response) => {
                     this.posts = response.data;
                     console.log(this.posts[0].adresse_nom_voie);
+                    console.log(this.homeRoute.split('/')[5])
                     this.loading = false;
                     })
                 .catch(function (error) {
@@ -44,10 +51,11 @@ import axios from "axios";
             }
         },
         computed: {
+            
             getFilteredPosts() {
-                return this.posts.adresse_nom_voie.filter(
+                return this.posts.filter(
                    post => {
-                       return post.toLowerCase().includes(this.q.toLowerCase());
+                       return post.adresse_nom_voie.toLowerCase().includes(this.q.toLowerCase());
                    }
                 );
             }

@@ -23,15 +23,15 @@
     <h1>consultez le prix de l'immobilier à {{$ville}}</h1>
     <h2>il y a {{$population[0]->PMUN}} habitans dans cette ville</h2>
     <div id="mapid"></div>
-    <search-component></search-component>
-       <ul class="row">
+    <search-component home-route="{{ route ('rues', [$CODDEP ,$ville]) }}"></search-component>
+       <!-- <ul class="row">
        @foreach($les_dvf as $rue)
           <li class="col-sm-2">
           {{$rue->adresse_nom_voie}}
             <a href="{{route ('dvf', [$CODDEP ,$ville,  $rue->adresse_nom_voie ]) }}">afficher les DVF de cette rue</a>
           </li>
         @endforeach
-      </ul>
+      </ul> -->
       <button id="togg2">masquer les rues qui ne possèdent pas de DVF</button>
       <ul id="mael">
         @foreach($adresse as $le_reste)
